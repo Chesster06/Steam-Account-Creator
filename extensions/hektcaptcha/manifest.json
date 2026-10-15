@@ -1,0 +1,56 @@
+{
+   "action": {
+      "default_popup": "popup.html",
+      "default_title": "hektCaptcha"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "hcaptcha.js" ],
+      "match_about_blank": false,
+      "matches": [ "*://*.hcaptcha.com/captcha/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "recaptcha.js" ],
+      "match_about_blank": false,
+      "matches": [ "*://*.google.com/recaptcha/api2/*", "*://*.google.com/recaptcha/enterprise/*", "*://*.recaptcha.net/recaptcha/api2/*", "*://*.recaptcha.net/recaptcha/enterprise/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "recaptcha-visibility.js" ],
+      "match_about_blank": false,
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+   } ],
+   "declarative_net_request": {
+      "rule_resources": [ {
+         "enabled": true,
+         "id": "ruleset_1",
+         "path": "rules.json"
+      } ]
+   },
+   "description": "Automatically solve hCaptcha using AI. Locally, with Chrome extension.",
+   "host_permissions": [ "*://hekt-static.akmal.dev/*", "*://*.google.com/recaptcha/*", "*://*.recaptcha.net/recaptcha/*" ],
+   "icons": {
+      "128": "icons/icon_128.png",
+      "16": "icons/icon_16.png",
+      "32": "icons/icon_32.png",
+      "48": "icons/icon_48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj32wvd9uWEf7z6/q8r+KyiYNIXjlt9WjtRKP6ZOEm8AyUDKE80HrT7jblo8oioeFnAbX9WdLZOrrw2voUyA7EKhNoIOBR0/kBW77QcQ9OsJ5JeRYajnuYr4YMvvYb7jDKda0f9ohOrXLGtgymjkKZlXIv0+YcV39Z+T9bUfhf4oQbyKcALisAw511zElg7sbzDSRj1oNgGJ6E3blKypizhLaom25uG/xw7T0MBHICY4pY2B8MUTTlZrI9mrY8DhScX3U6dOjo9mXfTpRyIhNtcpOAAd9V868Y6TcW8UwtL3fOqS8n5hdRFugEa5my4pd3Q4oOUQCmX4QYNCDU+7ZiQIDAQAB",
+   "manifest_version": 3,
+   "name": "hektCaptcha: hCaptcha Solver",
+   "permissions": [ "storage", "declarativeNetRequest" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.3.2",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "dist/*" ]
+   }, {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "models/*" ]
+   } ]
+}

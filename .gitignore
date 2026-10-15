@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated account files (CRITICAL: Keep your accounts private!)
+steam_account.txt
+mailboxes.json
+
+# Environment & Logs
+*.log
+.env
+.venv/
+env/
+venv/
+
+# OS metadata
+.DS_Store
+Thumbs.db
